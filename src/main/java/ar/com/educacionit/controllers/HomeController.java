@@ -8,7 +8,6 @@ public class HomeController {
 
     @GetMapping(value = "/")
     public String home() {
-        //quiero ir a la página home.html ubicada en templates
         return "home";
     }
 }
