@@ -29,23 +29,23 @@
 <body>
 	<main>
 		<section class="container-fluid">
-	<h1>Socios</h1>
+			<h1>Socios</h1>
 			<table class="table">
-		<!--titulos de la tabla-->
-		<tr>	
-			<th>ID</th>		
-			<th>NOMBRE</th>
-			<th>APELLIDO</th>
-			<th>CODIGO</th>
-			<th></th>
-		</tr>
-		<!-- rows -->		
-		<tr th:each="socio : ${socios}">
-			<td th:text="${socio.id}"></td>
-			<td th:text="${socio.nombre}"></td>
-			<td th:text="${socio.apellido}"></td>
-			<td th:text="${socio.codigo}"></td>
-			<td>
+				<!--titulos de la tabla-->
+				<tr>	
+					<th>ID</th>		
+					<th>NOMBRE</th>
+					<th>APELLIDO</th>
+					<th>CODIGO</th>
+					<th></th>			
+				</tr>
+				<!-- rows -->		
+				<tr th:each="socio : ${socios}">
+					<td th:text="${socio.id}"></td>
+					<td th:text="${socio.nombre}"></td>
+					<td th:text="${socio.apellido}"></td>
+					<td th:text="${socio.codigo}"></td>
+					<td>
 						<a class="btn btn-primary"
 							th:href="@{'/socio/edit/' + ${socio.id}}">Edit</a>
 						<a class="btn btn-danger"
@@ -59,9 +59,9 @@
 								data-bs-target="#exampleModal">-->
 <!--						  Eliminar-->
 						</button>		
-			</td>
-		</tr>
-	</table>
+					</td>			
+				</tr>
+			</table>
 		</section>
 	</main>
 	<!-- Modal -->
