@@ -19,13 +19,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	MyUserService myUserService;
 	
 //	@Autowired
-	BCryptPasswordEncoder bcrypt;
+	//BCryptPasswordEncoder bcrypt;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.userDetailsService(this.myUserService)
-			.passwordEncoder(bcrypt);
+			.passwordEncoder(passwordEncoder());
 	}
 	
 	@Override
