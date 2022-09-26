@@ -27,5 +27,9 @@ public class UsersService {
 		return this.repository.findByUsername(username);
 	}
 	
+	public void crear(Users user) {
+		this.repository.save(user);		
+	}
+	
 	
 }
