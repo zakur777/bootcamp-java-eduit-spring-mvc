@@ -5,18 +5,24 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import ar.com.educacionit.domain.Cupon;
 import ar.com.educacionit.domain.Socios;
+import ar.com.educacionit.enums.CuponKeysEnum;
+import ar.com.educacionit.enums.CuponViewsEnum;
+import ar.com.educacionit.enums.SocioViewsEnum;
+import ar.com.educacionit.enums.SociosKeysEnum;
 import ar.com.educacionit.services.SociosService;
 
 @Controller
@@ -28,13 +34,12 @@ public class SociosController {
     private SociosService sociosService;
 
 	//http://localhost:8081/socio/all
-    @GetMapping("/all")
-	public String all(Model model) {
-//		if(true) throw new DuplicateKeyException("error",new Exception("probando cosas"));
+	@GetMapping("/list")
+	public String list(Model model) {
 
 		List<Socios> socios = this.sociosService.buscarTodos();
 		model.addAttribute("socios", socios);
-		return "/socio/socios";
+		return SocioViewsEnum.LIST.getView();// "/socio/socios";
     }
 	
 	@GetMapping("/delete") 
@@ -44,7 +49,7 @@ public class SociosController {
 		
 		this.sociosService.eliminar(idSocios);
 		
-		return "redirect:/socio/all";
+		return SocioViewsEnum.LIST_REDIRECT.getView();// "redirect:/socio/all";
 	}
 	
 	@GetMapping("/edit/{id}") 
@@ -57,28 +62,51 @@ public class SociosController {
 		
 		model.addAttribute("SOCIO",socios);
 		
-		return "edit";
+		return SocioViewsEnum.EDIT.getView();//"edit";
 	}
 
 	@PostMapping("/edit")
-	public String editar(
-			@Valid @ModelAttribute(name="SOCIO") Socios socio,
-			BindingResult result,
-			Model modelAndView) {
+	public String edit(
+			@Validated
+			@ModelAttribute(name = "SOCIO") Socios socio,
+			BindingResult resul
+			) {
 		
-		//evaluar las validaciones
+		//verifico si hay errores
+		if(resul.hasErrors()) {
+			return SocioViewsEnum.NEW.getView();	
+		}
 		
-		//ModelAndView modelAndView  = new ModelAndView("edit");
+		this.sociosService.crear(socio);
 		
-		if(result.hasErrors()) {
-			modelAndView.addAttribute("SOCIO", socio);
-			return "edit";
+		return SocioViewsEnum.LIST_REDIRECT.getView();
 	}
 	
+	@GetMapping("/new")
+	public ModelAndView newCupon() {
 		
-		//modelAndView.addObject("SOCIO", socio);
+		Socios entity = new Socios();
 		
-		//return modelAndView;
-		return "edit";
+		ModelAndView model = new ModelAndView(SocioViewsEnum.NEW.getView());
+		
+		model.addObject(SociosKeysEnum.SOCIO.getKey(), entity);
+		
+		return model;
+	}
+	
+	@PostMapping("/new")
+	public String save(
+			@Validated
+			@ModelAttribute(name = "SOCIO") Socios cupon,
+			BindingResult resul
+			) {
+		
+		//verifico si hay errores
+		if(resul.hasErrors()) {
+			return SocioViewsEnum.NEW.getView();	
+		}
+		this.sociosService.crear(cupon);
+		
+		return SocioViewsEnum.LIST_REDIRECT.getView();
 	}
 }

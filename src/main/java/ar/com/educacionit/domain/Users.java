@@ -1,5 +1,7 @@
 package ar.com.educacionit.domain;
 
+import lombok.Data;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -67,4 +69,26 @@ public class Users {
 		return username;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setRoles(Set<Roles> roles) {
+		this.roles = roles;
+	}
+
+	public void setCategory(UsersCategory category) {
+		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "Users{" +
+				"id=" + id +
+				", password='" + password + '\'' +
+				", username='" + username + '\'' +
+				", roles=" + roles +
+				", category=" + category +
+				'}';
+	}
 }

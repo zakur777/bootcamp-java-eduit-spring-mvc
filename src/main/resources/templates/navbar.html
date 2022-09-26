@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" 
-	xmlns="http://www.w3.org/1999/xhtml" 
-	xmlsn:th="http://www.thymeleaft.org">
+	xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaft.org">
 	
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
@@ -18,6 +18,20 @@
           	href="#"
           	th:href="@{/cupon/list}">
           	Cupones
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" 
+          	href="#"
+          	th:href="@{/socio/list}">
+          	Socios
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" 
+          	href="#"
+          	th:href="@{/user/new}">
+          	Users
           </a>
         </li>
       </ul>
