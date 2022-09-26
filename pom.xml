@@ -12,7 +12,8 @@
 	<artifactId>spring-mvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-mvc</name>
-	<description>Spring Boot MVC + Thymleaft + Securoty</description>
+	<description>Spring Boot MVC + Thymleaft + Security
+</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -44,16 +45,18 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 <!-- 		<dependency> -->
-<!-- 			<groupId>org.postgresql</groupId> -->
-<!-- 			<artifactId>postgresql</artifactId> -->
+<!-- 			<groupId>mysql</groupId> -->
+<!-- 			<artifactId>mysql-connector-java</artifactId> -->
 <!-- 			<scope>runtime</scope> -->
 <!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.postgresql
+</groupId>
+			<artifactId>postgresql
+</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
