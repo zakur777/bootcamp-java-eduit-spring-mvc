@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import lombok.Data;
-
 import java.util.Set;
 
 import javax.persistence.Column;
