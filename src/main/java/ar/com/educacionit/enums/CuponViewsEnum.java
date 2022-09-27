@@ -5,7 +5,7 @@ public enum CuponViewsEnum {
 	LIST("cupon/list"),
 	EDIT("cupon/edit"),
 	NEW("cupon/new"),
-	LIST_REDIRECT("redirect:/cupon/list"),
+	LIST_REDIRECT("redirect:cupon/list"),
 	;
 	
 	private String view;
