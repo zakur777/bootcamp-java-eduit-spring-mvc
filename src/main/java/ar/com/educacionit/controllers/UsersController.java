@@ -2,6 +2,7 @@ package ar.com.educacionit.controllers;
 
 import java.util.List;
 
+import ar.com.educacionit.enums.UserViewsEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class UsersController {
 		Users entity = new Users();
 		entity.setCategory(new UsersCategory());
 		
-		ModelAndView model = new ModelAndView("/user/new");
+		ModelAndView model = new ModelAndView(UserViewsEnum.NEW.getView());
 		
 		//cargar las cateogorias desde la db usando el service
 		//List<Cate> 
@@ -75,7 +76,7 @@ public class UsersController {
 		
 		//verifico si hay errores
 		if(resul.hasErrors()) {
-			return "/user/new";	
+			return UserViewsEnum.NEW.getView();
 		}
 		
 		this.us.crear(user);
